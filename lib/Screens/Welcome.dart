@@ -13,6 +13,7 @@ import 'package:carousel_slider/carousel_options.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:vibz/Theme/default.dart';
 import 'package:vibz/Theme/thememodel.dart';
+import 'package:vibz/Widgets/Buttons/GreenTextButton.dart';
 import 'package:vibz/Widgets/Buttons/PrimaryButton.dart';
 import 'package:vibz/Widgets/Texts/DarkBlue.dart';
 import 'package:vibz/Widgets/Texts/DarkBlueShade.dart';
@@ -34,6 +35,10 @@ class Welcome extends StatefulWidget {
 class _WelcomeState extends State<Welcome> {
   int _current = 0;
   ThemeModel themeModel = ThemeModel();
+
+//TextEditing controllers
+  TextEditingController verifyEditController = TextEditingController();
+
 
   // Future<void> saveColor(val) async {
   //   SharedPreferences _prefs = await SharedPreferences.getInstance();
@@ -57,11 +62,12 @@ class _WelcomeState extends State<Welcome> {
   void initState() {
     // TODO: implement initState
     log('welcome init');
-    // getIt.isReady<Store>().then((value) {
-    //   log('get it');
-    //   log(getIt<Store>().state.toString());
-    //   getIt<Store>().dispatch(ReduxActions.ThemeModelAction());
-    // }).catchError((onError) => log(onError.toString()));
+  // firstdigitController.addListener(() {
+  //
+  //   if(firstdigitController.text.length==1  ){
+  //     FocusScope.of(context).nextFocus();
+  //   }
+  // });
     super.initState();
   }
 
@@ -83,7 +89,9 @@ class _WelcomeState extends State<Welcome> {
                       CarouselOnboarding(
                         visible: false,
                       ),
-                      Visibility(child: VerifyBoard()),
+                      VerifyBoard(
+                        visible: !isKeyboardVisible,
+                      ),
                       // Visibility(
                       //   visible: !isKeyboardVisible,
                       //   child:
@@ -93,7 +101,9 @@ class _WelcomeState extends State<Welcome> {
                       ),
                       // ),
                       Visibility(visible: false, child: PhoneNumberWidget()),
-                      Verify(),
+                      Verify(
+                        verifyEditController: verifyEditController,
+                      ),
                       Visibility(
                         visible: false,
                         child: Expanded(
@@ -104,7 +114,14 @@ class _WelcomeState extends State<Welcome> {
                       Visibility(
                           visible: true,
                           child: Expanded(
-                            child: Container(),
+                            child: Container(
+                              child: Align(
+                                alignment: Alignment.topRight,
+                                child: GreenTextButton(
+                                  text: 'Wrong Phone Number',
+                                ),
+                              ),
+                            ),
                             flex: isKeyboardVisible ? 7 : 1,
                           ))
                       //   // log(store.state.toString());

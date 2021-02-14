@@ -3,11 +3,34 @@ import 'package:flutter/services.dart';
 import 'package:vibz/Theme/thememodel.dart';
 
 class VerifyInput extends StatelessWidget {
-  ThemeModel themeModel = ThemeModel();
+  final ThemeModel themeModel = ThemeModel();
+  final TextEditingController textEditingController;
+
+  // final bool autofocus;
+  final Function onChanged;
+  final FocusNode focusNode;
+  final FocusNode focusNodeInput;
+  final Function onKey;
+
+  VerifyInput(
+      {Key key,
+      this.textEditingController,
+      // this.autofocus,
+      this.onChanged,
+      this.focusNode,
+      this.onKey,
+      this.focusNodeInput})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return TextField(
+      focusNode: this.focusNodeInput,
+
+      // autofocus: this.autofocus,
+      onChanged: this.onChanged,
+      controller: this.textEditingController,
+      keyboardType: TextInputType.number,
       textAlign: TextAlign.center,
       inputFormatters: [
         LengthLimitingTextInputFormatter(1),
