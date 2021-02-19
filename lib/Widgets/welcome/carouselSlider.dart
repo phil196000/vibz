@@ -23,11 +23,16 @@ class _CarouselOnboardingState extends State<CarouselOnboarding> {
  ThemeModel themeModel = ThemeModel();
   @override
   Widget build(BuildContext context) {
-    return Visibility(
-      visible: widget.visible,
-      child: Expanded(
-        flex: 6,
-        child: Container(
+    return
+      // Visibility(
+      // visible: widget.visible,
+      // child:
+
+      // Expanded(
+      //   flex: 6,
+      //   child:
+
+        Container(
           // decoration: BoxDecoration(color: ),
           child: Column(
             children: [
@@ -151,8 +156,8 @@ class _CarouselOnboardingState extends State<CarouselOnboarding> {
               color: themeModel.white),
           margin: EdgeInsets.all(20),
           padding: EdgeInsets.only(bottom: 20),
-        ),
-      ),
-    );
+        );
+      // );
+    // );
   }
 }

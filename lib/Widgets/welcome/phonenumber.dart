@@ -6,6 +6,9 @@ import 'package:vibz/Widgets/Texts/Green.dart';
 
 
 class PhoneNumberWidget extends StatelessWidget {
+  final Function proceedPressed;
+
+  const PhoneNumberWidget({Key key, this.proceedPressed}) : super(key: key);
   @override
   Widget build(BuildContext context) {
     ThemeModel themeModel = ThemeModel();
@@ -76,7 +79,7 @@ class PhoneNumberWidget extends StatelessWidget {
                   margin: EdgeInsets.only(top: 25),
                   child: PrimaryButton(
                     text: 'Proceed',
-                    onPressed: () {},
+                    onPressed: this.proceedPressed,
                   ),
                 ),
               )

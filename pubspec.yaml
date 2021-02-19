@@ -33,6 +33,11 @@ dependencies:
   flutter_keyboard_visibility: ^4.0.0
   flutter_svg: ^0.18.0
   pinput: ^1.0.0
+  image_picker: ^0.6.7+14
+  mime_type: ^0.3.2
+  share: ^0.6.5+4
+  dotted_border: ^1.0.6
+
   # firebase_core: "0.5.2"
   # firebase_auth: "^0.18.3"
   # cloud_firestore: "^0.14.3"

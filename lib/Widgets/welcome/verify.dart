@@ -14,8 +14,9 @@ class Verify extends StatelessWidget{
   ThemeModel themeModel = ThemeModel();
   final FocusNode focusNode = FocusNode();
   final TextEditingController verifyEditController;
-
-   Verify({Key key, this.verifyEditController}) : super(key: key);
+  final Function verifyPressed;
+  final Function resendPressed;
+   Verify({Key key, this.verifyEditController, this.verifyPressed, this.resendPressed}) : super(key: key);
 
 
   @override
@@ -63,10 +64,11 @@ class Verify extends StatelessWidget{
                     children: [
                       GreenTextButton(
                         text: 'Resend Code',
+                        onPressed: this.resendPressed,
                       ),
                       PrimaryButton(
                         text: 'Verify',
-                        onPressed: () {},
+                        onPressed: this.verifyPressed,
                       ),
                     ],
                   )),
