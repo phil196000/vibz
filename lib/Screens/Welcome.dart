@@ -21,6 +21,7 @@ import 'package:vibz/Widgets/Buttons/PrimaryButton.dart';
 import 'package:vibz/Widgets/Texts/DarkBlue.dart';
 import 'package:vibz/Widgets/Texts/DarkBlueShade.dart';
 import 'package:vibz/Widgets/Texts/Green.dart';
+import 'package:vibz/Widgets/profile/profile_picture.dart';
 import 'package:vibz/Widgets/welcome/carouselSlider.dart';
 import 'package:vibz/Widgets/welcome/holder.dart';
 import 'package:vibz/Widgets/welcome/phonenumber.dart';
@@ -42,12 +43,14 @@ class _WelcomeState extends State<Welcome> with TickerProviderStateMixin {
   Widget board = CarouselOnboarding(
     visible: true,
   );
+
 //profile image
   List<int> imageData;
   String fileType;
   File _image;
   bool picked = false;
   final picker = ImagePicker();
+
 //Animation Controller
   Tween _tween;
   Animation<double> animation;
@@ -97,6 +100,7 @@ class _WelcomeState extends State<Welcome> with TickerProviderStateMixin {
       }
     });
   }
+
   final _carouselTween =
       Tween<Offset>(begin: Offset(0, 0), end: Offset(-500, 0));
   final _verifyTween = Tween<Offset>(begin: Offset(500, 0), end: Offset(0, 0));
@@ -166,9 +170,29 @@ class _WelcomeState extends State<Welcome> with TickerProviderStateMixin {
                                 flex: isKeyboardVisible ? 1 : 1,
                               ),
 
-
                               Visibility(
-                                child: WelcomeProfile(),
+                                child: WelcomeProfile(
+                                  avatarPressed: () {
+                                    showModalBottomSheet(
+                                      context: context,
+                                      backgroundColor: Colors.white,
+
+                                      // shape: RoundedRectangleBorder(
+                                      //     borderRadius: BorderRadius.only(
+                                      //         topLeft: Radius.circular(0),
+                                      //         topRight: Radius.circular(0))),
+                                      enableDrag: false,
+                                      isScrollControlled: true,
+                                      builder: (context) {
+                                        return ProfilePictureMenu(
+                                          close: (){
+                                            Navigator.pop(context);
+                                          },
+                                        );
+                                      },
+                                    );
+                                  },
+                                ),
                                 visible: true,
                               ),
                               Visibility(

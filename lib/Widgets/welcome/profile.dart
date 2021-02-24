@@ -6,8 +6,17 @@ import 'package:vibz/Widgets/Buttons/PrimaryButton.dart';
 
 class WelcomeProfile extends StatelessWidget {
   final Function proceedPressed;
+  final Function avatarPressed;
+  final Function avatarCancel;
+  final IconData avatarIcon;
 
-  const WelcomeProfile({Key key, this.proceedPressed}) : super(key: key);
+  const WelcomeProfile(
+      {Key key,
+      this.proceedPressed,
+      this.avatarPressed,
+      this.avatarCancel,
+      this.avatarIcon = Icons.camera_alt})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -32,34 +41,41 @@ class WelcomeProfile extends StatelessWidget {
                       padding: EdgeInsets.all(0),
                       shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(50)),
-                      onPressed: () {},
+                      onPressed: this.avatarPressed,
                       child: DottedBorder(
                         child: Stack(
+                          overflow: Overflow.visible,
                           children: [
                             CircleAvatar(
                               radius: 50,
-                              backgroundColor:themeModel.borderColor ,
+                              backgroundColor: themeModel.borderColor,
                             ),
                             Positioned(
-                              bottom: 0,
-                                right: 0,
-                                child: Container(
-                              padding: EdgeInsets.all(5),
-                              decoration: BoxDecoration(
-                                  color: themeModel.background,
-                                  borderRadius: BorderRadius.circular(20),
-                                  boxShadow: [
-                                    BoxShadow(
-                                        color: Color.fromRGBO(0, 0, 0, 0.15),
-                                        offset: Offset(0, 5),
-                                        blurRadius: 10,
-                                        spreadRadius: 2)
-                                  ]),
-                              child: Icon(
-                                Icons.camera_alt_rounded,
-                                color: themeModel.white,
-                              ),
-                            ))
+                                bottom: -15,
+                                right:-15,
+                                child: FlatButton(
+                                  onPressed: this.avatarCancel,
+                                  // padding: EdgeInsets.all(10),
+                                  child: Container(
+                                    padding: EdgeInsets.all(5),
+                                    decoration: BoxDecoration(
+                                        color: themeModel.background,
+                                        borderRadius: BorderRadius.circular(30),
+                                        boxShadow: [
+                                          BoxShadow(
+                                              color:
+                                                  Color.fromRGBO(0, 0, 0, 0.15),
+                                              offset: Offset(0, 5),
+                                              blurRadius: 10,
+                                              spreadRadius: 2)
+                                        ]),
+                                    child: Icon(
+                                      this.avatarIcon,
+                                      color: themeModel.white,
+                                      // size: 25,
+                                    ),
+                                  ),
+                                ))
                           ],
                         ),
                         borderType: BorderType.Circle,
