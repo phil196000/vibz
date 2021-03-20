@@ -108,7 +108,7 @@ class _MyAppState extends State<MyApp> {
         // Once complete, show your application
         if (snapshot.hasData) {
           return StoreProvider<AppState>(
-            child: MaterialApp(title: 'Flutter Demo', home: Welcome()),
+            child: MaterialApp(title: 'Vibz', home: Welcome()),
             store: widget.store,
           );
         }
